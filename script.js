@@ -6,7 +6,7 @@ document.getElementById('getFactButton').addEventListener('click', async functio
         factDisplay.innerText = 'Loading...';
         try {
             // Using the api.math.tool endpoint
-            const response = await fetch(`https://api.math.tool/number/fact/${number}`, {
+            const response = await fetch(`https://api.math.tool/numbers/fact/${number}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
