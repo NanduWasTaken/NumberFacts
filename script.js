@@ -3,25 +3,20 @@ document.getElementById('getFactButton').addEventListener('click', function() {
     const factDisplay = document.getElementById('factDisplay');
 
     if (number) {
-        // Remove any previously created script tags
-        const oldScriptTag = document.getElementById('numberfact-script');
-        if (oldScriptTag) {
-            oldScriptTag.remove();
-        }
-
-        // Display loading message
         factDisplay.innerText = 'Loading...';
-
-        // Create a global callback function
-        window.showNumberFact = function(data) {
-            factDisplay.innerText = data;
-        };
-
-        // Create and add the script tag
-        const scriptTag = document.createElement('script');
-        scriptTag.id = 'numberfact-script';
-        scriptTag.src = `http://numbersapi.com/${number}?callback=showNumberFact`;
-        document.body.appendChild(scriptTag);
+        
+        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`http://numbersapi.com/${number}?default=You+are+not+even+that+interesting%2C+how+do+you+expect+a+number+to+be%3F`)}`)
+            .then(response => {
+                if (response.ok) return response.json();
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                factDisplay.innerText = data.contents;
+            })
+            .catch(error => {
+                factDisplay.innerText = 'Error fetching fact. Please try again.';
+                console.error('Error fetching fact:', error);
+            });
     } else {
         factDisplay.innerText = 'Please enter a number.';
     }
