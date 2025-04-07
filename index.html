@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Facts</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="NumberGame - Discover interesting facts about numbers">
+    <meta name="author" content="NanduWasTaken">
+    <meta name="keywords" content="number, facts, NumberGame, NanduWasTaken">
+    <title>NumberGame</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
 </head>
 <body>
-    <div class="container">
-        <h1>Number Facts</h1>
-        <input type="number" id="numberInput" placeholder="Enter a number">
-        <button id="getFactButton">Get Fact</button>
-        <div id="factDisplay"></div>
+    <div id="main-content">
+        <section id="number-facts-section">
+            <h2 class="size-limit-heading" id="number-facts-heading" data-text="Discover Number Facts">
+                Discover Number Facts
+            </h2>
+            <input type="number" id="numberInput" class="number-input" placeholder="Enter a number">
+            <button id="getFactButton" class="number-fact-button">Get Fact</button>
+            <div id="factDisplay" class="number-fact-display"></div>
+        </section>
     </div>
     <script src="script.js"></script>
 </body>
