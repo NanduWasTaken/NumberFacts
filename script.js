@@ -3,29 +3,14 @@ document.getElementById('getFactButton').addEventListener('click', async functio
     const factDisplay = document.getElementById('factDisplay');
 
     if (number) {
-        factDisplay.innerText = 'Loading...';
         try {
-            // Using the api.math.tool endpoint
-            const response = await fetch(`https://api.math.tool/numbers/fact/${number}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    // Add authorization if needed
-                    // 'Authorization': 'Bearer YOUR_API_KEY'
-                }
-            });
-            
+        	factDisplay.innerText = 'Loading...';
+            const response = await fetch(`http://numbersapi.com/${number}`);
             if (!response.ok) {
-                if (response.status === 401) {
-                    throw new Error('Unauthorized. Please check your API key.');
-                } else {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                throw new Error('Network response was not ok');
             }
-            
-            const data = await response.json();
-            // Adjust the next line based on the actual structure of the response
-            factDisplay.innerText = data.result || data.fact || JSON.stringify(data);
+            const fact = await response.text();
+            factDisplay.innerText = fact;
         } catch (error) {
             factDisplay.innerText = 'Error fetching fact. Please try again.';
             console.error('Error fetching fact:', error);
